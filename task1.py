@@ -1,12 +1,11 @@
-from collections import Counter, OrderedDict
+from collections import Counter #, OrderedDict
 
 def group_by(stream, field, success=None):
-    header = next(stream)
+    next(stream)
     col_begins = next(stream)
     date_start_index = col_begins.find('#', 1)
     date_end_index = col_begins.find('#', date_start_index+1)
     succ_index = col_begins.rfind('#', 0, -2)
-    print(succ_index)
     founded = []
 
     prev_year = ''
@@ -36,7 +35,7 @@ def group_by(stream, field, success=None):
 
 
     d = dict(Counter(founded))
-    return OrderedDict(sorted(d.items()))
+    return d # OrderedDict(sorted(d.items()))
 
 
 
