@@ -1,11 +1,10 @@
-SUBSPELLS = {'fe' : 1,
-             'je' : 2,
+SUBSPELLS = {'fe': 1,
+             'je': 2,
              'jee': 3,
              'ain': 3,
              'dai': 5,
-             'ne' : 2,
-             'ai' : 2,
-             '-' : -1}
+             'ne': 2,
+             'ai': 2}
 POSSIBLE_PAIRS = {'fe', 'je', 'ee', 'ai', 'in', 'da', 'ne'}
 
 
@@ -17,7 +16,6 @@ def damage(spell):
     spell_is_correct = 0 <= start < end and len(spell) > 0
 
     if spell_is_correct:
-        # print('spell na początku:',spell)
         founded_subspells = [spell[:2], spell[-2:]]
         spell = spell[2:-2]
 
@@ -25,15 +23,11 @@ def damage(spell):
             spell_is_correct = False
         else:
             creation = ''
-            # print('spell teraz:', spell)
             while len(spell) > 2:
-                # print("mamy:", spell)
                 creation += spell[0]
-                spell=spell[1:]
+                spell = spell[1:]
                 maybe = creation[-1]+spell[0]
-                # print('               maybe:', maybe, maybe not in POSSIBLE_PAIRS)
                 if maybe not in POSSIBLE_PAIRS:
-                    # print(maybe, 'gdy not in pairs')
                     if len(creation) > 2:
                         founded_subspells += split_max_damage_subspells(creation)
                     else:
@@ -44,8 +38,6 @@ def damage(spell):
             else:
                 founded_subspells += split_smallest_subspells(creation)
             founded_subspells.append(spell)
-            # print(founded_subspells)
-            # print(spell)
 
         evaluated_damage = evaluate_subspells(founded_subspells)
         return evaluated_damage if spell_is_correct and evaluated_damage > 0 else 0
@@ -56,11 +48,13 @@ def damage(spell):
 def evaluate_subspells(list_of_subspells):
     return sum(map(lambda sub: SUBSPELLS.get(sub, -1*len(sub)), list_of_subspells))
 
+
 def split_max_damage_subspells(string):
     small = split_smallest_subspells(string)
     big = split_biggest_subspells(string)
-
+    print(evaluate_subspells(small), evaluate_subspells(big))
     return small if evaluate_subspells(small) > evaluate_subspells(big) else big
+
 
 def split_smallest_subspells(string):
     splited = []
@@ -102,6 +96,3 @@ def split_biggest_subspells(string):
     else:
         splited += split_smallest_subspells(string)
     return splited
-
-
-

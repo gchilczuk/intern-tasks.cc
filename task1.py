@@ -1,4 +1,5 @@
-from collections import Counter #, OrderedDict
+from collections import Counter  # , OrderedDict
+
 
 def group_by(stream, field, success=None):
     next(stream)
@@ -18,9 +19,6 @@ def group_by(stream, field, success=None):
             month = date[1]
             succ = line[succ_index]
             is_succ = succ == 'S'
-            prev_year = year
-            prev_month = month
-            prev_is_succ = is_succ
         except IndexError:
             year = prev_year
             month = prev_month
@@ -32,13 +30,9 @@ def group_by(stream, field, success=None):
             else:
                 founded.append(month)
 
-
+        prev_year = year
+        prev_month = month
+        prev_is_succ = is_succ
 
     d = dict(Counter(founded))
-    return d # OrderedDict(sorted(d.items()))
-
-
-
-
-
-
+    return d  # OrderedDict(sorted(d.items()))
