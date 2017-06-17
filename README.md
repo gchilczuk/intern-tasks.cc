@@ -1,11 +1,11 @@
 # Python Intern Task
 
 ### Author
-Grzegorz Chilczuk
+Grzegorz Chilczuk  
 chilczukg@gmail.com
 
 ##### Task1
-Satellite orbital lauches log parser
+Satellite orbital lauches log parser  
 [launchlog.txt](../launchlog.txt) from [this source](http://planet4589.org/space/log/launch.html).
 
 ##### Task2
@@ -23,4 +23,4 @@ Spellbook:
 | ne       | 2      |
 | ai       | 2      |
 
-And there is few more, rules but it's only for wizards!
+And there is few more rules but they're only for wizards!
