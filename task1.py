@@ -10,6 +10,7 @@ def group_by(stream, field, success=None):
     :rtype: dict
     :return: dictionary with number of satellites launched in given year or month
     """
+
     next(stream)
     col_begins = next(stream)
     date_start_index = col_begins.find('#', 1)
@@ -35,7 +36,7 @@ def group_by(stream, field, success=None):
         if success is None or success == is_succ:
             if field == 'year':
                 founded.append(year)
-            else:
+            elif field == 'month':
                 founded.append(month)
 
         prev_year = year

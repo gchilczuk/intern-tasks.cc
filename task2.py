@@ -19,7 +19,7 @@ def damage(spell):
     end = spell.rfind('ai') + 2
     spell = spell[start:end]
 
-    spell_is_correct = 0 <= start < end and len(spell) > 0
+    spell_is_correct = 0 <= start < end
 
     if spell_is_correct:
         founded_subspells = [spell[:2], spell[-2:]]
@@ -28,22 +28,21 @@ def damage(spell):
         if spell.find('fe') > -1:
             spell_is_correct = False
         else:
-            creation = ''
+            subspell_builder = ''
             while len(spell) > 2:
-                creation += spell[0]
+                subspell_builder += spell[0]
                 spell = spell[1:]
-                maybe = creation[-1]+spell[0]
-                if maybe not in POSSIBLE_PAIRS:
-                    if len(creation) > 2:
-                        founded_subspells += split_max_damage_subspells(creation)
+                if subspell_builder[-1] + spell[0] not in POSSIBLE_PAIRS:
+                    if len(subspell_builder) > 2:
+                        founded_subspells += split_max_damage_subspells(subspell_builder)
                     else:
-                        founded_subspells += split_smallest_subspells(creation)
-                    creation = ''
-            creation += spell
-            if len(creation) > 2:
-                founded_subspells += split_max_damage_subspells(creation)
+                        founded_subspells += split_smallest_subspells(subspell_builder)
+                    subspell_builder = ''
+            subspell_builder += spell
+            if len(subspell_builder) > 2:
+                founded_subspells += split_max_damage_subspells(subspell_builder)
             else:
-                founded_subspells += split_smallest_subspells(creation)
+                founded_subspells += split_smallest_subspells(subspell_builder)
         evaluated_damage = evaluate_subspells(founded_subspells)
         return evaluated_damage if spell_is_correct and evaluated_damage > 0 else 0
 
@@ -63,17 +62,17 @@ def split_max_damage_subspells(string):
 def split_smallest_subspells(string):
     splited = []
     while len(string) > 2:
-        working = string[:2]
-        if working in SUBSPELLS:
-            splited.append(working)
+        subspell_builder = string[:2]
+        if subspell_builder in SUBSPELLS:
+            splited.append(subspell_builder)
             string = string[2:]
         else:
-            working += string[2]
-            if working in SUBSPELLS:
-                splited.append(working)
+            subspell_builder += string[2]
+            if subspell_builder in SUBSPELLS:
+                splited.append(subspell_builder)
                 string = string[3:]
             else:
-                splited.append(working[0])
+                splited.append(subspell_builder[0])
                 string = string[1:]
 
     splited.append(string)
@@ -83,17 +82,17 @@ def split_smallest_subspells(string):
 def split_biggest_subspells(string):
     splited = []
     while len(string) > 3:
-        working = string[:3]
-        if working in SUBSPELLS:
-            splited.append(working)
+        subspell_builder = string[:3]
+        if subspell_builder in SUBSPELLS:
+            splited.append(subspell_builder)
             string = string[3:]
         else:
-            working = working[:2]
-            if working in SUBSPELLS:
-                splited.append(working)
+            subspell_builder = subspell_builder[:2]
+            if subspell_builder in SUBSPELLS:
+                splited.append(subspell_builder)
                 string = string[2:]
             else:
-                splited.append(working[0])
+                splited.append(subspell_builder[0])
                 string = string[1:]
     if string in SUBSPELLS:
         splited.append(string)

@@ -5,7 +5,7 @@ Grzegorz Chilczuk
 chilczukg@gmail.com
 
 ##### Task1
-Satellite orbital lauches log parser  
+Satellite orbital launches log parser  
 [launchlog.txt](../launchlog.txt) from [this source](http://planet4589.org/space/log/launch.html).
 
 ##### Task2
