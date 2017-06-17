@@ -9,7 +9,7 @@ def group_by_test():
     print(group_by(file, 'year'))
 
 
-def damahe_test():
+def damage_test():
     print(damage('xxxxxfejejeeaindaiyaiaixxxxxx') == 17)
     print(damage('feeai') == 2)
     print(damage('feaineain') == 7)
@@ -18,7 +18,10 @@ def damahe_test():
     print(damage('fdafafeajain') == 1)
     print(damage('fexxxxxxxxxxai') == 0)
     print(damage('fejejeeaindaineai') == 18)
+    print(damage('fedaineai') == 1 + 5 + 2 + 2)
+    print(damage('fedaineiai') == 1 + 5 + 2 + 2 - 1)
+    print(damage('feaineiai') == 1 + 2 + 2 + 2 - 1)
 
 if __name__ == '__main__':
     group_by_test()
-    damahe_test()
+    damage_test()

@@ -33,12 +33,11 @@ def damage(spell):
                     else:
                         founded_subspells += split_smallest_subspells(creation)
                     creation = ''
+            creation += spell
             if len(creation) > 2:
                 founded_subspells += split_max_damage_subspells(creation)
             else:
                 founded_subspells += split_smallest_subspells(creation)
-            founded_subspells.append(spell)
-
         evaluated_damage = evaluate_subspells(founded_subspells)
         return evaluated_damage if spell_is_correct and evaluated_damage > 0 else 0
 
@@ -52,7 +51,6 @@ def evaluate_subspells(list_of_subspells):
 def split_max_damage_subspells(string):
     small = split_smallest_subspells(string)
     big = split_biggest_subspells(string)
-    print(evaluate_subspells(small), evaluate_subspells(big))
     return small if evaluate_subspells(small) > evaluate_subspells(big) else big
 
 
