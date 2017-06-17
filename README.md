@@ -6,7 +6,7 @@ chilczukg@gmail.com
 
 ##### Task1
 Satellite orbital launches log parser  
-[launchlog.txt](../launchlog.txt) from [this source](http://planet4589.org/space/log/launch.html).
+[launchlog.txt](./launchlog.txt) from [this source](http://planet4589.org/space/log/launch.html).
 
 ##### Task2
 [Famous polish wizard](https://www.youtube.com/watch?v=XkeVYHJ6AG8) spell damage calculator.
