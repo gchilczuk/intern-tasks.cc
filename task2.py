@@ -9,6 +9,12 @@ POSSIBLE_PAIRS = {'fe', 'je', 'ee', 'ai', 'in', 'da', 'ne'}
 
 
 def damage(spell):
+    """
+    Function calculating damage
+    :param str spell: string with spell
+    :rtype: int
+    :return: points of damage
+    """
     start = spell.find('fe')
     end = spell.rfind('ai') + 2
     spell = spell[start:end]

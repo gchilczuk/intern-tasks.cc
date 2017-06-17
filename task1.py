@@ -2,6 +2,14 @@ from collections import Counter  # , OrderedDict
 
 
 def group_by(stream, field, success=None):
+    """
+    Function parsing log of satellite orbital launches
+    :param stream: stream object
+    :param field: "year" or "month"
+    :param success: None (don't filter) , True (success), False (failed)
+    :rtype: dict
+    :return: dictionary with number of satellites launched in given year or month
+    """
     next(stream)
     col_begins = next(stream)
     date_start_index = col_begins.find('#', 1)
