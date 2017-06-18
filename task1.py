@@ -22,13 +22,13 @@ def group_by(stream, field, success=None):
     prev_month = ''
     prev_is_succ = None
     for line in stream:
-        date = line[date_start_index:date_end_index].split()
-        try:
+        if len(line) > succ_index:
+            date = line[date_start_index:date_end_index].split()
             year = date[0]
             month = date[1]
             succ = line[succ_index]
             is_succ = succ == 'S'
-        except IndexError:
+        else:
             year = prev_year
             month = prev_month
             is_succ = prev_is_succ
